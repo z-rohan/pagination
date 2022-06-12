@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+<title>SHOW LAPTOP</title>
+{% endblock %}
+
+{% block content %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">LAPTOP ID</th>
+        <th scope="col">NAME</th>
+        <th scope="col">BRAND</th>
+        <th scope="col">RAM</th>
+        <th scope="col">ROM</th>
+        <th scope="col">HDD</th>
+        <th scope="col">SDD</th>
+        <th scope="col">PRICE</th>
+        <th scope="col">UPDATE</th>
+        <th scope="col">DELETE</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in obj %}
+      <tr>
+        <th scope="row">{{i.laptop_id}}</th>
+        <td>{{i.name}}</td>
+        <td>{{i.brand}}</td>
+        <td>{{i.ram}}</td>
+        <td>{{i.rom}}</td>
+        <td>{{i.hdd}}</td>
+        <td>{{i.sdd}}</td>
+        <td>{{i.price}}</td>
+        <td><a href="{% url 'update_url' i.id %}"><button class="btn btn-primary">UPDATE</button></a></td>
+        <td><a href="{% url 'delete_url' i.id %}"><button class="btn btn-danger">DELETE</button></a></td>
+      </tr>
+      {% endfor %}
+    
+      <div class='pagination justify-content-center'>
+        {% if obj.has_previous %}
+          <a href='{% url "showlap_url" obj.previous_page_number %}'>Previous </a>
+        {% endif %}
+    
+        <span class='mx-4'>
+          Page {{ obj.number }} of {{ obj.paginator.num_pages }}
+        </span>
+    
+        {% if obj.has_next %}
+          <a href='{% url "showlap_url" obj.next_page_number %}' > Next</a>
+        {% endif %}
+      </div>
+    </tbody>
+  </table>
+
+
+{% endblock %}

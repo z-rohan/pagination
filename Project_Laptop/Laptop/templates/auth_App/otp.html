@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>OTP</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container jumbotron">
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Enter OTP" name="otp_u">
+        <input type="submit" value="Verify" class="btn btn-success">
+    </form>
+</div>
+
+{% endblock %}
